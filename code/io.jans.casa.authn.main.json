@@ -555,7 +555,7 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": false,
+			"selected": true,
 			"dragging": false
 		},
 		{
@@ -572,8 +572,8 @@
 					"x": 1723.5955202521977,
 					"y": -61.450472103370714
 				},
-				"previousNodeId": "whenNode-7e373456-29ab-4224-b8d1-fff9e4e14435",
-				"branching": "continue",
+				"previousNodeId": "whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae",
+				"branching": "success",
 				"agamaData": {
 					"assignments": [
 						{
@@ -591,7 +591,7 @@
 					"nodeColor": "",
 					"titleColor": "",
 					"descColor": "",
-					"displayName": "",
+					"displayName": "reinuti.JsonLocation",
 					"hasComment": false,
 					"comment": ""
 				}
@@ -1406,8 +1406,129 @@
 				"width": 170,
 				"height": 124
 			},
-			"selected": true,
+			"selected": false,
 			"dragging": false
+		},
+		{
+			"id": "callNode-f25f21d5-16f2-4a98-9621-d05e6faf87be",
+			"type": "callNode",
+			"position": {
+				"x": 1478.4052031293534,
+				"y": -439.58766150689485
+			},
+			"data": {
+				"id": "callNode-f25f21d5-16f2-4a98-9621-d05e6faf87be",
+				"type": "callNode",
+				"position": {
+					"x": 1723.5955202521977,
+					"y": -61.450472103370714
+				},
+				"previousNodeId": "whenNode-7e373456-29ab-4224-b8d1-fff9e4e14435",
+				"branching": "continue",
+				"agamaData": {
+					"javaClassName": "io.jans.casa.authn.IpChecker",
+					"javaMethodName": "isTrusted",
+					"javaVariableName": "",
+					"exceptionVariableField": "E",
+					"callType": "Call static method",
+					"arguments": [
+						"conf.trusted_networks",
+						"uid"
+					],
+					"nodeIcon": "material-symbols:code",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "IP trusted check",
+					"hasComment": true,
+					"comment": "",
+					"asssignedVariableName": "ipTrusted"
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 124
+			},
+			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae",
+			"type": "whenNode",
+			"position": {
+				"x": 1709.1942633632532,
+				"y": -381.58766150689485
+			},
+			"data": {
+				"id": "whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae",
+				"type": "whenNode",
+				"position": {
+					"x": 1767.5955202521977,
+					"y": -365.4504721033707
+				},
+				"previousNodeId": "callNode-f25f21d5-16f2-4a98-9621-d05e6faf87be",
+				"agamaData": {
+					"variableField": "",
+					"valueField": "",
+					"conditionInputField": "",
+					"conditions": [
+						{
+							"variable": "ipTrusted",
+							"operator": "is",
+							"dataValue": "true",
+							"combinator": "none"
+						}
+					],
+					"nodeIcon": "ph:swap",
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "",
+					"hasComment": true,
+					"comment": "IP en red confiable, omitir 2FA"
+				}
+			},
+			"measured": {
+				"width": 110,
+				"height": 60
+			},
+			"selected": false,
+			"dragging": false
+		},
+		{
+			"id": "finishNode-31f26a94-b1fc-42b6-bee3-35ace051bd33",
+			"type": "finishNode",
+			"position": {
+				"x": 1959.1942633632532,
+				"y": -381.58766150689485
+			},
+			"data": {
+				"id": "finishNode-31f26a94-b1fc-42b6-bee3-35ace051bd33",
+				"type": "finishNode",
+				"position": {
+					"x": 1959.1942633632532,
+					"y": -381.58766150689485
+				},
+				"previousNodeId": "whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae",
+				"branching": "continue",
+				"agamaData": {
+					"nodeColor": "",
+					"titleColor": "",
+					"descColor": "",
+					"displayName": "Finish Auth - 2FA Skip",
+					"hasComment": true,
+					"comment": "",
+					"flowfilename": "",
+					"returnVariable": "uid",
+					"finishMode": "withVariable",
+					"nodeIcon": "material-symbols:line-end-square-rounded"
+				}
+			},
+			"measured": {
+				"width": 170,
+				"height": 124
+			},
+			"selected": false
 		}
 	],
 	"edges": [
@@ -1657,25 +1778,6 @@
 			},
 			"labelShowBg": true,
 			"sourceHandle": "source_whenNode-7e373456-29ab-4224-b8d1-fff9e4e14435_success"
-		},
-		{
-			"id": "whenNode-7e373456-29ab-4224-b8d1-fff9e4e14435-assignmentNode-be49a96c-e041-400c-9fda-9e88de8d6254",
-			"type": "default",
-			"source": "whenNode-7e373456-29ab-4224-b8d1-fff9e4e14435",
-			"target": "assignmentNode-be49a96c-e041-400c-9fda-9e88de8d6254",
-			"labelBgPadding": [
-				8,
-				4
-			],
-			"labelBgBorderRadius": 4,
-			"label": "continue",
-			"labelBgStyle": {
-				"fill": "#009688",
-				"color": "#ffffff",
-				"fillOpacity": 0.7
-			},
-			"labelShowBg": true,
-			"sourceHandle": "source_whenNode-7e373456-29ab-4224-b8d1-fff9e4e14435_continue"
 		},
 		{
 			"id": "assignmentNode-be49a96c-e041-400c-9fda-9e88de8d6254-callNode-95ddfbcf-ac3f-494f-bfbb-76e7922c5ffd",
@@ -2074,11 +2176,87 @@
 				"fillOpacity": 0.7
 			},
 			"id": "xy-edge__callNode-1a5024aa-c2ad-4511-806e-e7bdfe1f043fsource_callNode-1a5024aa-c2ad-4511-806e-e7bdfe1f043f-repeatNode-9330019d-e78f-4870-9175-f8dbf5721521target_repeatNode-9330019d-e78f-4870-9175-f8dbf5721521"
+		},
+		{
+			"id": "whenNode-7e373456-29ab-4224-b8d1-fff9e4e14435-callNode-f25f21d5-16f2-4a98-9621-d05e6faf87be",
+			"type": "default",
+			"source": "whenNode-7e373456-29ab-4224-b8d1-fff9e4e14435",
+			"target": "callNode-f25f21d5-16f2-4a98-9621-d05e6faf87be",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "continue",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_whenNode-7e373456-29ab-4224-b8d1-fff9e4e14435_continue"
+		},
+		{
+			"id": "callNode-f25f21d5-16f2-4a98-9621-d05e6faf87be-whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae",
+			"type": "default",
+			"source": "callNode-f25f21d5-16f2-4a98-9621-d05e6faf87be",
+			"target": "whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_callNode-f25f21d5-16f2-4a98-9621-d05e6faf87be"
+		},
+		{
+			"source": "whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae",
+			"sourceHandle": "source_whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae_success",
+			"target": "assignmentNode-be49a96c-e041-400c-9fda-9e88de8d6254",
+			"targetHandle": "target_assignmentNode-be49a96c-e041-400c-9fda-9e88de8d6254",
+			"label": "Condition met",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"id": "xy-edge__whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8aesource_whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae_success-assignmentNode-be49a96c-e041-400c-9fda-9e88de8d6254target_assignmentNode-be49a96c-e041-400c-9fda-9e88de8d6254",
+			"selected": false
+		},
+		{
+			"id": "whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae-finishNode-31f26a94-b1fc-42b6-bee3-35ace051bd33",
+			"type": "default",
+			"source": "whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae",
+			"target": "finishNode-31f26a94-b1fc-42b6-bee3-35ace051bd33",
+			"labelBgPadding": [
+				8,
+				4
+			],
+			"labelBgBorderRadius": 4,
+			"label": "continue",
+			"labelBgStyle": {
+				"fill": "#009688",
+				"color": "#ffffff",
+				"fillOpacity": 0.7
+			},
+			"labelShowBg": true,
+			"sourceHandle": "source_whenNode-a6151136-4a7b-431d-ae95-589d1f7ce8ae_continue"
 		}
 	],
 	"viewport": {
-		"x": -441.3333435058594,
-		"y": 292.5,
-		"zoom": 0.5
+		"x": -748.7005680704149,
+		"y": 383.5166956580383,
+		"zoom": 0.7330583785946045
 	}
 }
